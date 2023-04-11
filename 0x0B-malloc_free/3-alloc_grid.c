@@ -1,39 +1,43 @@
 #include "main.h"
 #include <stdlib.h>
+
 /**
- * alloc_grid - nested loop to make grid
- * @width: width input
- * @height: height input
- * Return: pointer to 2 dim. array
+ * alloc_grid - returns a pointer to a 2 dimensional array of integers.
+ * @width: width of the array.
+ * @height: height of the array.
+ *
+ * Return: pointer of an array of integers
  */
 int **alloc_grid(int width, int height)
 {
-int **me;
-int x, y;
+int **gridout;
+int i, j;
 
-if (width <= 0 || height <= 0)
+if (width < 1 || height < 1)
 return (NULL);
 
-me = malloc(sizeof(int *) * height);
-
-if (me == NULL)
+gridout = malloc(height * sizeof(int *));
+if (gridout == NULL)
+{
+free(gridout);
 return (NULL);
+}
 
-for (x = 0; x < height; x++)
+for (i = 0; i < height; i++)
 {
-me[x] = malloc(sizeof(int) * width);
-
-if (me[x] == NULL)
+gridout[i] = malloc(width * sizeof(int));
+if (gridout[i] == NULL)
 {
-for (; x >= 0; x--)
-free(me[x]);
+for (i--; i >= 0; i--)
+free(gridout[i]);
+free(gridout);
 return (NULL);
 }
 }
-for (x = 0; x < height; x++)
-{
-for (y = 0; y < width; y++)
-me[x][y] = 0;
-}
-return (me);
+
+for (i = 0; i < height; i++)
+for (j = 0; j < width; j++)
+gridout[i][j] = 0;
+
+return (gridout);
 }
