@@ -2,10 +2,10 @@
 
 /**
  * create_file - Creates a file.
- * @filename: pointer to the name of the file to create.
- * @text_content: pointer to a str to write to the file.
+ * @filename: A pointer to the name of the file to create.
+ * @text_content: A pointer to a str to write to the file.
  *
- * Return: If the func fails - -1.
+ * Return: If the function fails - -1.
  *         Otherwise - 1.
  */
 int creat_file(const char *filename, char *text_content)
